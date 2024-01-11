@@ -1,5 +1,6 @@
 <div class="container">
 <a href="/" class="btn btn-primary mb-3">Kembali</a>
+<!--    <p>Nomor berita --><?php //= $id; ?><!--</p>-->
     <br>
     <img src="<?= base_url('assets/' . $news['image']); ?>" alt="News Image" class="img-fluid mx-auto d-block" width="700" height="500">
     <p>Penulis: <?= $news['username']; ?></p>
@@ -9,7 +10,7 @@
     <p>Category: <?= $news['name']; ?></p>
     <hr>
     <?php if (session('role') === 'visitor'): ?>
-        <form action="<?= site_url('comment/add/' . $news['id']) ?>" method="post">
+        <form action="<?= site_url('comment/add/' . $id) ?>" method="post">
             <textarea name="content" cols="150" rows="5" placeholder="Tambahkan komentar" required></textarea>
             <br>
             <button type="submit" class="btn btn-success mt-2">Tambah Komentar</button>

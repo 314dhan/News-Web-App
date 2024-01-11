@@ -9,7 +9,8 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'HomeController::index');
 $routes->post('/search', 'HomeController::search');
 // Comment
-   
+
+$routes->post('comment/add/(:segment)', 'CommentController::addComment/$1');
 $routes->get('comment/delete/(:num)', 'CommentController::deleteComment/$1');
 // News
 $routes->group('news', function ($routes)

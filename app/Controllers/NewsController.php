@@ -8,22 +8,32 @@ use CodeIgniter\Controller;
 
 class NewsController extends Controller
 {
+
     public function detail($id)
     {
         $newsModel = new NewsModel();
         $commentModel = new CommentModel();
-        $data['news'] = $newsModel->getNewsWithAuthorAndCategory($id);
 
-        if ($data['news'] === null) {
+        // Mengambil ID berita
+        $newsId = $newsModel->getNewsId($id);
+
+        if (!$newsId) {
             return "Berita tidak ditemukan.";
         }
-        $data['comments'] = $commentModel->getCommentsByNewsId($id);
+
+        // Mengambil berita dengan informasi kategori
+        $data['news'] = $newsModel->getNewsWithAuthorAndCategory($newsId);
+
+        // Mengambil komentar untuk berita ini
+        $data['comments'] = $commentModel->getCommentsByNewsId($newsId);
+
+        // Menambahkan ID ke dalam data untuk dikirimkan ke view
+        $data['id'] = $id;
+
         echo view('layout/header');
         echo view('layout/navbar');
         echo view('news', $data);
     }
-
-    // controllers/NewsController.php
 
     public function create()
     {

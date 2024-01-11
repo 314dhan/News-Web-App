@@ -37,6 +37,14 @@ class NewsModel extends Model
     }
 
 
+    public function getNewsId($id)
+    {
+        $news = $this->find($id);
+
+        return ($news) ? $news['id'] : null;
+    }
+
+
     public function getNewsWithAuthorAndCategory($id = null)
     {
         return $this->join('users', 'users.id = news.author_id')
