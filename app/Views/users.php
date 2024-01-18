@@ -1,5 +1,6 @@
 <div class="container text-center">
     <?php if (session('role') === 'admin'): ?>
+        <a href="<?= site_url('auth/logout') ?>" type="button" class="btn btn-danger mb-3">Keluar</a>
         <table class="table table-bordered">
             <thead>
             <tr>
