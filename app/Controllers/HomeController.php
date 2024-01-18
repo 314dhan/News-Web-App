@@ -68,18 +68,18 @@ class HomeController extends BaseController
             return redirect()->to('/auth/users');
         }
 
-        if ($userData['role'] == 'visitor') {
-            $commentModel->where('user_id', $id)->delete();
-        }
-
+        // Hapus komentar terlebih dahulu jika pengguna memiliki peran 'author'
         if ($userData['role'] == 'author') {
+            $commentModel->where('user_id', $id)->delete();
             $newsModel->where('author_id', $id)->delete();
         }
 
+        // Hapus pengguna
         $userModel->deleteUser($id);
 
         return redirect()->to('/auth/users');
     }
+
 
     public function newsByCategory($category_id)
     {
