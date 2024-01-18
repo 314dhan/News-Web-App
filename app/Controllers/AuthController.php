@@ -109,62 +109,6 @@ class AuthController extends Controller
         return view('auth/register');
     }
 
-
-//    public function register()
-//    {
-//        if ($this->request->getMethod() === 'post') {
-//            $userModel = new UserModel();
-//
-//            $data = [
-//                'username' => $this->request->getPost('username'),
-//                'email' => $this->request->getPost('email'),
-//                'password' => $this->request->getPost('password'),
-//                'role' => $this->request->getPost('role'),
-//            ];
-//
-//            $validationRules = [
-//                'username' => 'required|min_length[3]|max_length[255]|is_unique[users.username]',
-//                'email' => 'required|valid_email|is_unique[users.email]',
-//                'password' => 'required|min_length[5]',
-//                'role' => 'required|in_list[author,visitor]',
-//            ];
-//
-//            if ($this->validate($validationRules)) {
-//                // Hash password sebelum disimpan
-//                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-//
-//                $userModel->insert($data);
-//
-//                // Set data user ke sesi setelah berhasil mendaftar
-//                $session = session();
-//                $sessionData = [
-//                    'user_id' => $userModel->getInsertID(),
-//                    'username' => $data['username'],
-//                    'role' => $data['role'],
-//                ];
-//                $session->set('user_id', $userModel->getInsertID());
-//
-//                // Redirect ke halaman setelah registrasi berhasil
-//                return redirect()->to('/');
-//            } else {
-//                // Registrasi gagal, tampilkan pesan error
-//                $errors = $this->validator->getErrors();
-//
-//                // Tambahkan pesan khusus untuk is_unique
-//                if (isset($errors['username']) && strpos($errors['username'], 'is_unique') !== false) {
-//                    $errors['username'] = 'Username sudah digunakan. Silakan pilih username lain.';
-//                }
-//                if (isset($errors['email']) && strpos($errors['email'], 'is_unique') !== false) {
-//                    $errors['email'] = 'Email sudah digunakan. Silakan gunakan email lain.';
-//                }
-//
-//                return redirect()->back()->withInput()->with('errors', $errors);
-//            }
-//        }
-//
-//        return view('auth/register');
-//    }
-
     public function logout()
     {
         session()->remove('user_id');

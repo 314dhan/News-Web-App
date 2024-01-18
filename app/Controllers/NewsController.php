@@ -134,7 +134,6 @@ class NewsController extends Controller
         $newsModel = new NewsModel();
         $newsModel->delete($id);
 
-        // Redirect ke halaman utama atau halaman lain setelah penghapusan
         return redirect()->to('/');
     }
 }
